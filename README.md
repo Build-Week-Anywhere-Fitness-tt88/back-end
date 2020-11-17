@@ -6,6 +6,7 @@ https://anywhere-fitness-tt-webpt-88.herokuapp.com/
 
 |Action | Response|
 |---|---|
+|GET /| Returns the sample data|
 |GET /classes  |Returns a list of classes|
 |GET /classes/:id  |Returns a specific class|
 |POST /classes | Adds a class|
