@@ -8,6 +8,7 @@ https://anywhere-fitness-tt-webpt-88.herokuapp.com/
 |---|---|
 |GET /classes  |Returns a list of classes|
 |GET /classes/:id  |Returns a specific class|
+|POST /classes | Adds a class|
 |PUT /classes/:id  |Updates the class|
 |DELETE /classes/:id  |Deletes a class|
 
