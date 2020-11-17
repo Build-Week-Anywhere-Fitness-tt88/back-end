@@ -5,8 +5,6 @@ const Users = require("./user-model");
 
 const router = express.Router();
 
-const SECRET = "fsadfdsafih4i2y3874twufskjdfkjdsayro873yqriuhsalkjfhdsaifyia";
-
 router.post("/sign-up", async (req, res, next) => {
   try {
     // get username, password, role out from request body
@@ -29,7 +27,7 @@ router.post("/sign-up", async (req, res, next) => {
         username,
         role,
       },
-      SECRET
+      process.env.TOKEN_SECRET
     );
 
     // send the token to the front-end
@@ -75,7 +73,7 @@ router.post("/login", async (req, res, next) => {
           username: userFromDB.username,
           role: userFromDB.role,
         },
-        SECRET
+        process.env.TOKEN_SECRET
       );
       // send the token to the front-end
       res.status(200).json({
