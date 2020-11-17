@@ -32,5 +32,5 @@ exports.seed = async function(knex) {
           numberOfRegisteredAttendees: faker.random.number(),
           maxClassSize: faker.random.number()
         }
-      ]);
+      ])
 };
