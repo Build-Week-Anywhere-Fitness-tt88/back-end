@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
 
 function restrict(){
-    return async (req, res, next) => {
+    return (req, res, next) => {
         try{
             const token = req.cookies.token;
+            console.log(token);
 
             if(!token){
                 return res.status(401).json({
