@@ -1,9 +1,11 @@
 const express = require('express');
 const Classes = require('./class-model');
-
+const {restrict} = require('./class-middleware');
+const { authMiddleware, studentOnlyAuthMiddleware, instructorOnlyAuthMiddleware } = require('../users/user-middleware');
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+
+router.get('/', authMiddleware(), async (req, res, next) => {     //   <--------------token in user-middleware.  access for instructor & student
     try{
         return res.status(200).json(await Classes.getClasses());
     } catch(error){
@@ -11,7 +13,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', authMiddleware(), async (req, res, next) => {    // <------------------------getClassById for both instructor & student
     try{
         const getClass = await Classes.getClassById(req.params.id);
         if(!getClass){
@@ -26,7 +28,7 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', instructorOnlyAuthMiddleware(), async (req, res, next) => {           // <-------------------- instructorOnlyAuthMiddleware to updateClass
     try{
        const updateClass = await Classes.updateClass(req.body, req.params.id);
        if(!updateClass){
@@ -40,7 +42,7 @@ router.put('/:id', async (req, res, next) => {
     }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', instructorOnlyAuthMiddleware(), async (req, res, next) => {      // <-------------- instructorOnlyAuthMiddleware to deleteClass
     try{
         await Classes.removeClass(req.params.id);
         return res.status(204).json({
@@ -51,7 +53,7 @@ router.delete('/:id', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', instructorOnlyAuthMiddleware(), async (req, res, next) => {         // <--------------- instructorOnlyAuthMiddleware to addClass
     try{
         const newClass = await Classes.addClass(req.body);
         if(!newClass.name){
