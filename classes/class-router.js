@@ -1,9 +1,9 @@
 const express = require('express');
 const Classes = require('./class-model');
-
+const {restrict} = require('./class-middleware');
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', restrict(), async (req, res, next) => {
     try{
         return res.status(200).json(await Classes.getClasses());
     } catch(error){
@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', restrict(), async (req, res, next) => {
     try{
         const getClass = await Classes.getClassById(req.params.id);
         if(!getClass){
