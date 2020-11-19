@@ -5,6 +5,8 @@ const classRouter = require("./classes/class-router");
 const userRouter = require("./users/user-router");
 const sampleRouter = require('./samples/sample-router');
 
+require('dotenv').config();
+
 const server = express();
 
 server.use(express.json());
