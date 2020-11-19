@@ -20,7 +20,7 @@ module.exports = {
 		},
 	},
 	development: {
-		client: "sqlite3",
+		client: "pg",
 		useNullAsDefault: true,
 		connection: {
 			filename: "./data/anywherefitness.db3",
@@ -55,7 +55,7 @@ module.exports = {
 	},
 
 	production: {
-		client: "sqlite3",
+		client: "pg",
 		useNullAsDefault: true,
 		connection: {
 			filename: "./data/anywherefitness.db3",
