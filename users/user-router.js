@@ -33,6 +33,8 @@ router.post("/sign-up", async (req, res, next) => {
     // send the token to the front-end
     res.status(201).json({
       token,
+      username,
+      role
     });
   } catch (error) {
     next(error);
@@ -78,6 +80,8 @@ router.post("/login", async (req, res, next) => {
       // send the token to the front-end
       res.status(200).json({
         token,
+        userFromDB.username,
+        userFromDB.role
       });
       // if not matches
     } else {
