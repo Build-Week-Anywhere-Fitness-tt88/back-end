@@ -80,8 +80,8 @@ router.post("/login", async (req, res, next) => {
       // send the token to the front-end
       res.status(200).json({
         token,
-        userFromDB.username,
-        userFromDB.role
+        username: userFromDB.username,
+        role: userFromDB.role
       });
       // if not matches
     } else {
